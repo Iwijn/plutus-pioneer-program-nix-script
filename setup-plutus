@@ -11,10 +11,10 @@
 
 # Get the name of the directory which you are in when executing this script
 # (should be week..)
-WEEK_DIR=${PWD##*/}
+week_dir=${PWD##*/}
 
 # check if you are in the correct directory
-if [[ ${WEEK_DIR} =~ ^week[0-9][0-9]$ ]]; then
+if [[ ${week_dir} =~ ^week[0-9][0-9]$ ]]; then
 
     # get the hash message from the cabal.project file
     HASH=$(cat cabal.project | grep -A 1 "location: https://github.com/input-output-hk/plutus-apps.git" | cut -f 4 -d " " | tail -n 1)
@@ -23,12 +23,12 @@ if [[ ${WEEK_DIR} =~ ^week[0-9][0-9]$ ]]; then
     cd ../../../plutus-apps
 
     # check if the navigation succeeded
-    CURRENT_DIR=${PWD##*/}
-    if [ "${CURRENT_DIR}" = "plutus-apps" ]; then 
+    current_dir=${PWD##*/}
+    if [ "${current_dir}" = "plutus-apps" ]; then 
         # do the checkout
         git checkout ${HASH}
         # enter nix-shell and navigate back to the week directory when entered
-        nix-shell --command "cd ../plutus-pioneer-program/code/${WEEK_DIR}; return"
+        nix-shell --command "cd ../plutus-pioneer-program/code/${week_dir}; return"
 
 # Error messages
 
