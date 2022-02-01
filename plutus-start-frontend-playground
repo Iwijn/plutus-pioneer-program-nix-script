@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# simple navigate and start
+cd ${HOME}/plutus/plutus-apps/plutus-playground-client/
+npm start
